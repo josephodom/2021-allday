@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FurnitureController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function ()
+{
+    return redirect(route('furniture.view'));
+});
+
+Route::prefix('/furniture')->group(function()
+{
+    Route::get('/view/{id?}', [ FurnitureController::class, 'viewSingle', ])->name('furniture.view');
 });
